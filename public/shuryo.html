@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <!-- headタグの中にはメタデータ等を記載する -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shuryo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <h1>終わりでーす</h1>
+  <p id="score"></p>
+  <p id="eval"></p>
+  <button onclick="location.href='./index.html'">戻る</button>
+  <p id="word"></p>
+  <script>
+    window.onload = async (event) => {
+
+
+
+      // GET /shiritoriを実行
+      const response = await fetch("/score", { method: "GET" });
+      // responseの中からレスポンスのテキストデータを取得
+      const scorejson = await response.text();
+      const scoreObj = JSON.parse(scorejson);
+      // id: previousWordのタグを取得
+      const paragraph1 = document.querySelector("#score");
+      const paragraph2 = document.querySelector("#eval");
+      // 評価
+      let eval;
+      if (scoreObj["score"] < 0) {
+        eval = "C";
+      }
+      else if (scoreObj["score"] < 50) {
+        eval = "B";
+      }
+      else if (scoreObj["score"] < 100) {
+        eval = "A";
+      }
+      else {
+        eval = "S"
+      }
+      // 取得したタグの中身を書き換える
+      paragraph1.innerHTML = `あなたのスコア: ${scoreObj["score"]}`;
+      paragraph2.innerHTML = `評価: ${eval}`;
+      const paragraph3 = document.querySelector("#word");
+      paragraph3.innerHTML = `単語の履歴: ${scoreObj["previousWord"]}`;
+
+    }
+
+  </script>
+</body>
+
+</html>

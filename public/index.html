@@ -5,18 +5,33 @@
   <!-- headタグの中にはメタデータ等を記載する -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>shiritori</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
   <!-- bodyタグの中には実際に表示するものなどを書く -->
-  <h1>しりとり</h1>
-  <!-- 現在の単語を表示する場所 -->
-  <p id="previousWord"></p>
-  <!-- 次の文字を入力するフォーム -->
-  <input id="nextWordInput" type="text" />
-  <button id="nextWordSendButton">送信</button>
+  <h1 style="text-align: center;">
+    <font size="7">しりとり</font>
+  </h1>
+
+  <div class="center">
+    <!-- 現在の単語を表示する場所 -->
+    <p id="previousWord"></p>
+    <!-- 矢印 -->
+    <div>⇒</div>
+    <!-- 次の文字を入力するフォーム -->
+    <input id="nextWordInput" type="text" />
+  </div>
+  <div class="center">
+    <button id="nextWordSendButton">送　信　</button>
+    <button id="resetSendButton">リセット</button>
+    <button id="giveupSendButton">こうさん</button>
+  </div>
+  <p>※ひらがなや漢字で無効な単語と出て漢字の読みを入力していた場合、漢字で試してみてください。<br>　仕様上、存在する単語であっても無効な単語として出る場合があります。</p>
+  <p>　入力された文字をひらがなにしたときの文字数がスコアとしてカウントされます。<br>　なお、入力した文字が無効であったり、前の単語につながってなかったりすると文字数分減点されます。</p>
+  <p>　こうさんボタンを押すと終了、リセットボタンを押すと再スタートとなります。</p>
+  <p>　りんごばななや理科実験室など複数の単語が一つになっている場合、無効な単語として扱われます。(小川、子猫なども)</p>
   <!-- JavaScriptを実行 -->
   <script>
 
@@ -31,7 +46,7 @@
       // id: previousWordのタグを取得
       const paragraph = document.querySelector("#previousWord");
       // 取得したタグの中身を書き換える
-      paragraph.innerHTML = `前の単語: ${previousWord}`;
+      paragraph.innerHTML = `${previousWord}`;
     }
 
     // 送信ボタンの押下時に実行
@@ -56,18 +71,47 @@
       if (response.status !== 200) {
         const errorJson = await response.text();
         const errorObj = JSON.parse(errorJson);
-        alert(errorObj["errorMessage"]);
+        switch (response.status) {
+          case 400:
+          case 403:
+            alert(errorObj["errorMessage"]);
+            break;
+          case 401:
+          case 402:
+            alert(errorObj["errorMessage"]);
+            window.location.href = './shuryo.html';
+            break;
+          default:
+            break;
+        }
       }
-
 
       const previousWord = await response.text();
 
       // id: previousWordのタグを取得
       const paragraph = document.querySelector("#previousWord");
       // 取得したタグの中身を書き換える
-      paragraph.innerHTML = `前の単語: ${previousWord}`;
+      paragraph.innerHTML = `${previousWord}`;
       // inputタグの中身を消去する
       nextWordInput.value = "";
+    }
+
+    document.querySelector("#resetSendButton").onclick = async (event) => {
+      alert("リセットボタンが押されました");
+      // GET /shiritoriを実行
+      const response = await fetch("/shiritori", { method: "GET" });
+      // responseの中からレスポンスのテキストデータを取得
+      const previousWord = await response.text();
+      // id: previousWordのタグを取得
+      const paragraph = document.querySelector("#previousWord");
+      // 取得したタグの中身を書き換える
+      paragraph.innerHTML = `${previousWord}`;
+      nextWordInput.value = "";
+    }
+    document.querySelector("#giveupSendButton").onclick = async (event) => {
+      alert("こうさんボタンが押されました");
+      // GET /shiritoriを実行
+      window.location.href = './shuryo.html';
     }
 
   </script>
