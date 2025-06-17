@@ -112,6 +112,7 @@ Deno.serve(async (_req) => {
     ) {
       // 同一であれば、previousWordを更新
       if (hiraganaWord.slice(-1) == "ん") {
+        previousWord.push(nextWord);
         return new Response(
           JSON.stringify({
             "errorMessage": "最後尾が「ん」です",
@@ -127,6 +128,7 @@ Deno.serve(async (_req) => {
       if (
         previousWord.includes(nextWord) || hiraganalist.includes(hiraganaWord)
       ) {
+        previousWord.push(nextWord);
         return new Response(
           JSON.stringify({
             "errorMessage": "過去に使用した単語が入力されました",
