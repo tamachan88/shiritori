@@ -21,7 +21,7 @@
 
 ・cssでボタンや入力ボックス、文字などを大きくしたり丸めたり色を付けたりした
 
-Denoを使用しました。URLを示す https://tamachan88-shiritori-82.deno.dev
+Denoを使用した。URLを示す https://tamachan88-shiritori-82.deno.dev
 
 参考にしたwebサイト
 
