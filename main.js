@@ -97,6 +97,7 @@ Deno.serve(async (_req) => {
         hiraganalist[hiraganalist.length - 1].slice(-1)[0];
       nextFirstChar += hiraganaWord[1];
     }
+    console.log(prevLastChar, nextFirstChar);
     if (prevLastChar === nextFirstChar) {
       if (hiraganaWord.slice(-1) == "ん") {
         previousWord.push(nextWord);
