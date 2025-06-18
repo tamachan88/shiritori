@@ -25,12 +25,14 @@ Denoを使用しました。URLを示す https://tamachan88-shiritori-82.deno.de
 
 参考にしたwebサイト
 
-・URL「https://skillhub.jp/blogs/259」　サイトタイトル「SKILLHUB」　ページタイトル「JavaScriptの書き方入門 -
-はじめてのWebデザイン【図解たっぷり】」
+・URL「https://skillhub.jp/blogs/259」　サイトタイトル「SKILLHUB」　ページタイトル「JavaScriptの書き方入門 -はじめてのWebデザイン【図解たっぷり】」
+
 ・URL「https://saruwakakun.com/html-css/basic/css」　サイトタイトル「サルワカ」　ページタイトル「初心者向けCSS（スタイルシート）入門：基本的な書き方を総まとめ！」
+
 ・URL「https://saruwakakun.com/html-css/basic/html」　サイトタイトル「サルワカ」　ページタイトル「初心者向けHTML入門：書き方の基本とタグの使い方」
 
 AIについて
 
 調べたときエッジの一番上に出てくるcopilotを参考にした。
+
 単語が実在するかどうか判定する方法、またそれの実装方法をchatgptに聞いた。
