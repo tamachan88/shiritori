@@ -1,6 +1,6 @@
 # shiritori
 
-追加した機能やデザイン
+# 追加した機能やデザイン
 
 ・単語を平仮名だけでなく漢字やカタカナでも行けるようにした(kurmoji使用)。
 
@@ -21,9 +21,10 @@
 
 ・cssでボタンや入力ボックス、文字などを大きくしたり丸めたり色を付けたりした
 
+# 動作方法について
 Denoを使用した。URLを示す https://tamachan88-shiritori-82.deno.dev
 
-参考にしたwebサイト
+# 参考にしたwebサイト
 
 ・URL「https://skillhub.jp/blogs/259」　サイトタイトル「SKILLHUB」　ページタイトル「JavaScriptの書き方入門 -はじめてのWebデザイン【図解たっぷり】」
 
@@ -31,7 +32,7 @@ Denoを使用した。URLを示す https://tamachan88-shiritori-82.deno.dev
 
 ・URL「https://saruwakakun.com/html-css/basic/html」　サイトタイトル「サルワカ」　ページタイトル「初心者向けHTML入門：書き方の基本とタグの使い方」
 
-AIについて
+# AIについて
 
 調べたときエッジの一番上に出てくるcopilotを参考にした。
 
