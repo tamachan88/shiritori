@@ -32,6 +32,7 @@
 正常に動作しないといった問題があったので新たにフィードバックの入力欄を作成しweb利用者が管理者に問い合わせできる機能を作成した
 # 使用した技術
 言語　       HTML,CSS,JavaScript
+
 ライブラリ   Kuromoji.js
 # 動作方法について
 Denoを使用した。URLを示す https://tamachan88-shiritori-82.deno.dev
