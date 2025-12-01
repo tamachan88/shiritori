@@ -162,6 +162,17 @@ Deno.serve(async (_req) => {
       },
     );
   }
+  if (_req.method === "POST" && pathname === "/contact") {
+    const data = await _req.json();
+
+    console.log("===== 問い合わせが届きました =====");
+    console.log("名前:", data.name || "なし");
+    console.log("メール:", data.email || "なし");
+    console.log("内容:", data.message);
+    console.log("====================================");
+
+    return new Response("OK", { status: 200 });
+  }
 
   return serveDir(_req, {
     fsRoot: "./public/",

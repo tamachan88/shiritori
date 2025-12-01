@@ -32,6 +32,24 @@
   <p>　入力された文字をひらがなにしたときの文字数がスコアとしてカウントされます。<br>　なお、入力した文字が無効であったり、前の単語につながってなかったりすると文字数分減点されます。</p>
   <p>　こうさんボタンを押すと終了、リセットボタンを押すと再スタートとなります。</p>
   <p>　りんごばななや理科実験室など複数の単語が一つになっている場合、無効な単語として扱われます。(小川、子猫なども)</p>
+  <hr>
+  <h2>問い合わせフォーム</h2>
+
+  <form id="contactForm">
+    <label>お名前（任意）</label><br>
+    <input type="text" id="contactName"><br><br>
+
+    <label>メールアドレス（任意）</label><br>
+    <input type="email" id="contactEmail"><br><br>
+
+    <label>お問い合わせ内容（必須）</label><br>
+    <textarea id="contactMessage" required rows="4" cols="40"></textarea><br><br>
+
+    <button type="submit">送信</button>
+  </form>
+
+  <p id="contactStatus"></p>
+
   <!-- JavaScriptを実行 -->
   <script>
 
@@ -113,6 +131,35 @@
       // GET /shiritoriを実行
       window.location.href = './shuryo.html';
     }
+    document.querySelector("#contactForm").onsubmit = async (event) => {
+      event.preventDefault();
+
+      const name = document.querySelector("#contactName").value;
+      const email = document.querySelector("#contactEmail").value;
+      const message = document.querySelector("#contactMessage").value;
+
+      if (!message.trim()) {
+        alert("お問い合わせ内容を入力してください。");
+        return;
+      }
+
+      const response = await fetch("/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      const status = document.querySelector("#contactStatus");
+
+      if (response.status === 200) {
+        status.innerText = "送信しました！ありがとうございます。";
+
+        // フォームをリセット
+        document.querySelector("#contactForm").reset();
+      } else {
+        status.innerText = "送信に失敗しました。もう一度お試しください。";
+      }
+    };
 
   </script>
 </body>
